@@ -1,0 +1,65 @@
+// import { hashPassword } from '../../utils';
+export default {
+	up: (queryInterface) =>
+		queryInterface.bulkInsert(
+			'Projects',
+			[
+				{
+					id: 'e71c28fd-73d8-4d92-9125-ab3d022093b9',
+					LGA: 'Asalga',
+					community: 'Buguma',
+					category: 'Education',
+					location: 'Amachree Square',
+					state: 'Rivers',
+					projectType: 'Social Intervention',
+					projectDescription: 'This is a social intervention project to build schools for students of Buguma City',
+					budgetedCost: 'N5,000,000,000',
+					commitment: 'Immediately',
+					amountApprovedInT16: 'Nil',
+					amountApprovedInT17: 'Nil',
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+				{
+					id: 'e71c28fd-73d8-4d92-9125-ab3d022093b0',
+					LGA: 'Walga',
+					community: 'Warri',
+					category: 'Construction',
+					location: 'Delta',
+					state: 'Delta',
+					projectType: 'Social Intervention',
+					projectDescription: 'This project is to construct drainages for the people of Emouhua',
+					budgetedCost: 'N10,000,000,000',
+					commitment: 'Full',
+					likes: 1,
+					amountApprovedInT16: 'N5,000,000,000',
+					amountApprovedInT17: 'N7,000,000,000',
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+
+				{
+					id: '7aa38d4e-7fbf-4067-8821-9c27d2fb6e3a',
+					LGA: 'Yelga',
+					community: 'Yenagoa',
+					category: 'Education',
+					location: 'Bayelsa',
+					state: 'Bayelsa',
+					projectType: 'Social Intervention',
+					projectDescription:
+						'This project will ensure students of Yenagoa get free textbooks for every academic session',
+					budgetedCost: 'N2,000,000',
+					commitment: 'Full',
+					amountApprovedInT16: '0',
+					amountApprovedInT17: '0',
+					likes: 4,
+					status: 'work in progress',
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+			],
+			{},
+		),
+
+	down: (queryInterface) => queryInterface.bulkDelete('Projects', null, {}),
+};
