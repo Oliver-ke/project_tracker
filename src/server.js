@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Base Route Response
-app.get('/', (req, res) => res.json({ status: res.statusCode, message: 'Welcome to Project tracker server' }));
+app.get('/', (req, res) => res.json({ status: 200, message: 'Welcome to Project tracker server' }));
 app.use('/api/v1', routes);
 
 // catch 404 and forward to error handler
