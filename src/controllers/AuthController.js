@@ -25,7 +25,7 @@ export default class authController {
 				// process successfully authenticated and registered user
 				const { id: userId } = user;
 				const token = await generateToken({ userId });
-				return successResponse(res, 200, 'Registration successful', {}, token);
+				res.redirect('http://localhost:3000/dashboard?token=' + token);
 			})(req, res, next);
 		};
 	}

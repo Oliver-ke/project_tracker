@@ -11,7 +11,7 @@ export default class UserController {
 		try {
 			const userExits = await Users.findOne({ where: { email } });
 			if (userExits) {
-				return errorResponse(res, 404, 'User already exist');
+				return errorResponse(res, 403, 'User already exist');
 			}
 			const passKey = Math.random().toString(36).substring(2, 15);
 			// refused hasing password
@@ -33,7 +33,7 @@ export default class UserController {
 			if (!user) {
 				return errorResponse(res, 401, 'Invalid credencial');
 			}
-			const { firstName, lastName, isVerified, id: userId } = user.data;
+			const { firstName, lastName, isVerified, id: userId } = user.dataValues;
 
 			if (!isVerified) {
 				return errorResponse(res, 401, 'Account not verified');
@@ -48,7 +48,7 @@ export default class UserController {
 				firstName,
 				lastName,
 			};
-			const token = await Jwt.generateToken({ userId });
+			const token = await Jwt.generateToken({ userId, firstName, lastName });
 			return successResponse(res, 200, 'success', response, token);
 		} catch (error) {
 			console.log(error);
@@ -69,9 +69,9 @@ export default class UserController {
 					},
 					{ where: { email: user.dataValues.email } },
 				);
-				delete newUser.password;
-				const response = newUser.toJSON();
-				const token = await generateToken({ userId: newUser.dataValues.id });
+				delete user.password;
+				const response = user.dataValues;
+				const token = await generateToken({ userId: user.dataValues.id });
 				return successResponse(res, 200, 'logged in', response, token);
 			}
 			return errorResponse(res, 401, 'Invalid code, or code has already been used');
